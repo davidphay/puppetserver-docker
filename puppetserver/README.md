@@ -1,4 +1,4 @@
-# [puppetlabs/puppetserver](https://github.com/puppetlabs/puppetserver)
+# [davidphay/puppetserver](https://github.com/davidphay/puppetserver)
 
 The Dockerfile for this image is available in the Puppetserver repository
 [here][1].
@@ -72,6 +72,6 @@ We collect data to help us understand how the containers are used and make decis
 This is disabled by default.
 
 
-[1]: https://github.com/puppetlabs/puppetserver/blob/master/docker/puppetserver/Dockerfile
+[1]: https://github.com/davidphay/puppetserver-docker/blob/main/Dockerfile
 [2]: https://puppet.com/docs/puppetserver/latest/services_master_puppetserver.html
 [3]: https://github.com/puppetlabs/pupperware

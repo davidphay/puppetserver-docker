@@ -52,16 +52,14 @@ build: prep
 		${DOCKER_BUILD_FLAGS} \
 		--load \
 		--pull \
+		--no-cache \
 		--build-arg vcs_ref=$(vcs_ref) \
 		--build-arg build_date=$(build_date) \
 		--build-arg version=$(VERSION) \
 		--build-arg pupperware_analytics_stream=$(PUPPERWARE_ANALYTICS_STREAM) \
-		--file puppetserver/Dockerfile \
-		--tag $(NAMESPACE)/puppetserver:$(VERSION) $(PWD)/..
-ifeq ($(IS_LATEST),true)
-	@docker tag $(NAMESPACE)/puppetserver:$(VERSION) \
-		$(NAMESPACE)/puppetserver:$(LATEST_VERSION)
-endif
+		--tag $(NAMESPACE)/puppetserver:$(VERSION) \
+		./
+	@docker tag $(NAMESPACE)/puppetserver:$(VERSION) $(NAMESPACE)/puppetserver:$(LATEST_VERSION)
 
 test: prep
 	@bundle install --path $$BUNDLE_PATH --gemfile $$GEMFILE --with test
@@ -72,9 +70,7 @@ test: prep
 
 push-image: prep
 	@docker push $(NAMESPACE)/puppetserver:$(VERSION)
-ifeq ($(IS_LATEST),true)
 	@docker push $(NAMESPACE)/puppetserver:$(LATEST_VERSION)
-endif
 
 push-readme:
 	@docker pull sheogorath/readme-to-dockerhub
